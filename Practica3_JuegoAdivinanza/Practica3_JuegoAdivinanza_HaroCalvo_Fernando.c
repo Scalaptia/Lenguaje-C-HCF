@@ -1,13 +1,20 @@
+/*
+    Nombre del archivo: Practica3_JuegoAdivinanza_HaroCalvo_Fernando.c
+    Autor: Fernando Haro Calvo
+    Fecha de creación: 12 de septiembre de 2023
+    Descripción: Juego de adivinanza de números utilizando etiquetas y la instrucción "goto" para controlar el flujo del juego.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 int main()
 {
+    system("CLS");
     srand(time(NULL));                 // Inicializa generador de números aleatorios
     int numSecreto = rand() % 100 + 1; // Escoger número
-    int intento, numIntentos = 0;
-    int op;
+    int intento, op, numIntentos = 0;
 
 inicio:
     printf("Bienvenido al juego de adivinar el numero!\n\n");
