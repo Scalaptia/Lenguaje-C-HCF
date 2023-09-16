@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 void calcularFactorial(void);
-void calcularFactorialRec(void);
+int calcularFactorialRecursion(int n);
 
 int main()
 {
@@ -30,7 +30,27 @@ int main()
             break;
 
         case 2:
-            calcularFactorialRec();
+            int n, res;
+
+            system("CLS");
+            //	TITULO
+            printf("   FACTORIAL RECURSION\n");
+
+            //	PROGRAMA
+            printf("Ingrese un numero entero positivo: ");
+            scanf("%d", &n);
+
+            if (n <= 0)
+            {
+                printf("El numero ingresado debe ser positivo\n");
+                system("PAUSE");
+                return;
+            }
+
+            res = calcularFactorialRecursion(n);
+            printf("\nEl factorial de %d es: %d\n", n, res);
+            system("PAUSE");
+
             break;
         }
     } while (op != 0);
@@ -91,19 +111,17 @@ reinicio:
 }
 
 /*
-    Función: calcularFactorialRec
+    Función: calcularFactorialRecursion
     Descripción: Calcula e imprime el factorial de forma recursiva de un numero ingresado.
 */
-void calcularFactorialRec()
+int calcularFactorialRecursion(int n)
 {
-    int n;
-
     if (n == 0)
     {
         return 1;
     }
     else
     {
-        return n * factorial(n - 1);
+        return n * calcularFactorialRecursion(n - 1);
     }
 }
