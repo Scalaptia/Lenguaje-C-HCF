@@ -8,12 +8,6 @@ Clase: Lenguaje C
 
 Desarrollen el código en lenguaje C y elaboren el diagrama de flujo correspondiente para los ejercicios. Será suficiente con un archivo .cpp que contenga todos los ejercicios organizados en un menú implementado mediante una estructura switch.
 
-### Repositorio
-
----
-
-[](https://github.com/Scalaptia/Lenguaje-C-HCF/tree/main/Practica4_Funciones)
-
 ### Inicio
 
 ---
