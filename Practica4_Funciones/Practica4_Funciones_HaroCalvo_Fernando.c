@@ -5,15 +5,17 @@
     Descripción: Funciones con retorno y sin retorno
 */
 
+// Librerias
 #include <stdio.h>
 
+// Prototipos de Funciones
 void calcularFibonacci(int n);
 int calcularFibonacciRecursion(int n);
 void generarTrianguloPascal(int n);
 
 int main()
 {
-    int op, i, res, n;
+    int op, res, n;
     do
     {
         system("CLS");
@@ -34,13 +36,6 @@ int main()
             printf("Ingrese un numero entero positivo: ");
             scanf("%d", &n);
 
-            if (n < 0)
-            {
-                printf("El numero ingresado debe ser positivo\n");
-                system("PAUSE");
-                break;
-            }
-
             calcularFibonacci(n);
             system("PAUSE");
             break;
@@ -50,13 +45,6 @@ int main()
             printf("   FIBONACCI RECURSION \n");
             printf("Ingrese un numero entero positivo: ");
             scanf("%d", &n);
-
-            if (n < 0)
-            {
-                printf("El numero ingresado debe ser positivo\n");
-                system("PAUSE");
-                break;
-            }
 
             res = calcularFibonacciRecursion(n);
             printf("\nEl %d termino de fibonacci es: %d\n", n, res);
@@ -69,13 +57,6 @@ int main()
             printf("   TRIANGULO DE PASCAL \n");
             printf("Ingrese el numero de filas deseado: ");
             scanf("%d", &n);
-
-            if (n < 0)
-            {
-                printf("El numero ingresado debe ser positivo\n");
-                system("PAUSE");
-                break;
-            }
 
             generarTrianguloPascal(n);
             printf("\n");
@@ -105,6 +86,8 @@ int main()
             }
         }
     } while (op != 0);
+
+    return 0;
 }
 
 /*
@@ -122,9 +105,9 @@ void calcularFibonacci(int n)
         ant = sig;
         sig = res;
         res = ant + sig;
+        printf("%d, ", res);
     }
-
-    printf("\nEl %d termino de fibonacci es: %d\n", n, res);
+    printf("\n");
 }
 
 /*
@@ -136,46 +119,53 @@ void calcularFibonacci(int n)
 */
 int calcularFibonacciRecursion(int n)
 {
+    // Caso Base
     if (n <= 1)
     {
         return n;
     }
-    else
+
+    // Caso Recursivo
+    return calcularFibonacciRecursion(n - 1) + calcularFibonacciRecursion(n - 2);
+}
+/*
+    Función: calcularCoeficienteBinomial
+    Descripción: Funcion auxiliar para calcular el coeficiente binomial utilizando recursion.
+    Formula: C(n, k) = n! / (k! * (n - k)!)
+    Parámetros:
+        - n: Número total de elementos.
+        - k: Número de elementos a elegir.
+*/
+int calcularCoeficienteBinomial(int n, int k)
+{
+    // Caso Base
+    if (k == 0 || k == n)
     {
-        return calcularFibonacciRecursion(n - 1) + calcularFibonacciRecursion(n - 2);
+        return 1;
     }
+
+    // Caso Recursivo
+    return calcularCoeficienteBinomial(n - 1, k - 1) + calcularCoeficienteBinomial(n - 1, k);
 }
 
 /*
-    Función: calcularTrianguloPascal
+    Función: generarTrianguloPascal
     Descripción: Genera e imprime n cantidad de filas del triangulo de pascal.
     Parámetros:
         - n: Número de filas deseado
 */
-
-// Funcion auxiliar para calcular factorial.
-int factorial(int n)
-{
-    int i, res = 1;
-    for (i = 1; i <= n; i++)
-    {
-        res *= i;
-    }
-
-    return res;
-}
-
 void generarTrianguloPascal(int n)
 {
     int i, j;
 
+    printf("\nTriangulo de Pascal con %d lineas:\n", n);
+
     for (i = 0; i < n; i++)
     {
-        printf("\nFila %d: ", i + 1);
-
         for (j = 0; j <= i; j++)
         {
-            printf("%d ", (factorial(i) / (factorial(j) * factorial(i - j))));
+            printf("%d ", calcularCoeficienteBinomial(i, j));
         }
+        printf("\n");
     }
 }
