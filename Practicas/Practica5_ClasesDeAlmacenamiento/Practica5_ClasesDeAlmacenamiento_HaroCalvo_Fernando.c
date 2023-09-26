@@ -8,6 +8,7 @@
 // Librerias
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 // Prototipos de Funciones
 void loteria(void);
@@ -15,6 +16,7 @@ void carrera(void);
 
 int main()
 {
+    srand(time(NULL)); // Inicializa la semilla aleatoria.
     int op;
     do
     {
@@ -51,11 +53,39 @@ int main()
 }
 
 /*
+    Función: generarNumeroLoteria
+    Descripción: Genera un número aleatorio entre 1 y 100
+*/
+int generarNumeroLoteria()
+{
+    return rand() % 100 + 1;
+}
+
+/*
     Función: loteria
     Descripción: Simula un juego de lotería utilizando variables estáticas y automáticas.
 */
 void loteria()
 {
+    static int numeroGanador = 0;
+
+    // Si el número ganador no ha sido generado, genera uno
+    if (numeroGanador == 0)
+    {
+        numeroGanador = generarNumeroLoteria();
+    }
+
+    // Genera el número del jugador
+    int numeroJugador = generarNumeroLoteria();
+
+    if (numeroJugador == numeroGanador)
+    {
+        printf("Felicidades, ganaste la loteria!, el numero ganador fue: %d\n", numeroGanador);
+    }
+    else
+    {
+        printf("Lo siento, no ganaste esta vez. El numero ganador era: %d, tu numero fue: %d\n", numeroGanador, numeroJugador);
+    }
 }
 
 /*
