@@ -71,7 +71,7 @@ int main()
 }
 ```
 
-**\*\***\*\***\*\***Salida:**\*\***\*\***\*\***
+**Salida:**
 
 ![Salida1](images/salida1.png)
 
@@ -124,7 +124,7 @@ Las variables estáticas se almacenan en una región especial de la memoria llam
 
 4. **Declara una variable de registro llamada temp y otra automática llamada valor en una función. Compara el acceso y el tiempo de vida de estas variables.**
 
-**\*\***\*\***\*\***Código:**\*\***\*\***\*\***
+**Código:**
 
 ```c
 register int temp;
@@ -137,7 +137,7 @@ printf("Valor de temp: %d\n", temp);
 printf("Valor de valor: %d\n", valor);
 ```
 
-**\*\***\*\***\*\***Salida:**\*\***\*\***\*\***
+**Salida:**
 
 ![Salida3](images/salida3.png)
 
@@ -149,7 +149,7 @@ Podrías considerar el uso de una variable de registro en situaciones en las que
 
 5. **Declara una variable global llamada pi con un valor de 3.14159 y otra variable local con el mismo nombre en una función (Con diferente valor). Intenta acceder a ambas variables desde diferentes partes del programa.**
 
-\***\*\*\*\*\***Código:\***\*\*\*\*\***
+**Código:**
 
 ```c
 void variableLocal()
