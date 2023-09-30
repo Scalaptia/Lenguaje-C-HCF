@@ -74,7 +74,7 @@ void loteria()
 {
     static int numeroGanador = 0;
 
-    // Si el número ganador no ha sido generado, genera uno
+    // Si el número ganador no ha sido generado, genera uno (el valor se mantendrá entre ejecuciones)
     if (numeroGanador == 0)
     {
         numeroGanador = generarNumeroLoteria();
@@ -94,7 +94,7 @@ void loteria()
 }
 
 /*
-    Función: iniciarCarrera
+    Función: generarVelocidadAleatoria
     Descripción: Genera una velocidad aleatoria entre 100 y 200 km/h.
 */
 int generarVelocidadAleatoria()
@@ -108,8 +108,6 @@ int generarVelocidadAleatoria()
 */
 void iniciarCarrera()
 {
-    int distancia = 1000;
-
     char n1[20] = "Rayo McQueen";
     char n2[20] = "Francesco Bernoulli";
     char n3[20] = "Mate";
@@ -117,6 +115,8 @@ void iniciarCarrera()
     register int v1 = generarVelocidadAleatoria();
     register int v2 = generarVelocidadAleatoria();
     register int v3 = generarVelocidadAleatoria();
+
+    int distancia = 1000;
 
     float t1 = (float)distancia / v1;
     float t2 = (float)distancia / v2;
