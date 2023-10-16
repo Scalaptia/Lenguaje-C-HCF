@@ -74,8 +74,7 @@ int main()
             break;
 
         case 4:
-            ptrArr2 = arr2;
-
+            // Llenar arreglo
             for (i = 0; i < 10; i++)
             {
                 do
@@ -86,17 +85,18 @@ int main()
                 arr2[i] = num;
             }
 
+            ptrArr2 = arr2;
             printf("Arreglo original:   ");
             for (i = 0; i < 10; i++)
             {
                 printf("%d, ", *ptrArr2);
                 ptrArr2++;
             }
-            ptrArr2 = arr2;
 
-            sumarAElementos(ptrArr2, 10, 5); // Modificar arreglo
             ptrArr2 = arr2;
+            sumarAElementos(ptrArr2, 10, 5);
 
+            ptrArr2 = arr2;
             printf("\nArreglo modificado: ");
             for (i = 0; i < 10; i++)
             {
