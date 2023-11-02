@@ -36,8 +36,6 @@ int main()
         q[i] = &b[i][0];
     }
 
-    int **r = q;
-
     do
     {
         system("CLS");
