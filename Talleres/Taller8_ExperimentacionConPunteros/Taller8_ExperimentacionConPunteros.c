@@ -24,17 +24,12 @@ int main()
         q[i] = &b[i][0];
     }
 
-    int **r = q;
-
     do
     {
         system("CLS");
         printf("   M  E   N   U \n");
         printf("1.- IMPRIMIR MATRIZ \n");
         printf("2.- IMPRIMIR MATRIZ \n");
-        printf("3.- IMPRIMIR MATRIZ \n");
-        printf("4.- IMPRIMIR MATRIZ \n");
-        printf("5.- IMPRIMIR MATRIZ \n");
         printf("0.- SALIR  \n");
         printf("\nESCOGE UNA OPCION: ");
         scanf("%d", &op);
@@ -47,19 +42,16 @@ int main()
             break;
 
         case 2:
-            imprimirMatriz2(&b[0][0], 4, 3);
+            imprimirMatriz(&b[0][0], 4, 3);
             break;
 
         case 3:
-            imprimirMatriz3(b, 4, 3);
+            imprimirMatriz(q, 4, 3);
             break;
 
         case 4:
-            imprimirMatriz4(q, 4, 3);
-            break;
-
-        case 5:
-            imprimirMatriz5(r, 4, 3);
+            for (i = 0; i)
+                imprimirMatriz(b, 4, 3);
             break;
 
         case 0:
@@ -125,21 +117,6 @@ void imprimirMatriz4(int *p[], int m, int n)
         for (j = 0; j < n; j++)
         {
             printf("%d\t", p[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-}
-
-void imprimirMatriz5(int **q, int m, int n)
-{
-    int i, j;
-    printf("La matriz es: \n");
-    for (i = 0; i < m; i++)
-    {
-        for (j = 0; j < n; j++)
-        {
-            printf("%d\t", q[i][j]);
         }
         printf("\n");
     }
