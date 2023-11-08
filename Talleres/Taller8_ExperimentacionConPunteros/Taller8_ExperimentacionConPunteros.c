@@ -7,6 +7,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+
+#define M 100
+#define N 15
 
 int solicitarNumero();
 void llenarMatriz(int **q, int m, int n);
@@ -25,76 +29,82 @@ void busquedaLineal_Metodo5(int **q, int m, int n, int num);
 
 int main()
 {
-    int op, num;
-    int m = 100, n = 15, i;
+    srand(time(NULL));
+    clock_t start, end;
+    double tiempo_m1 = 0, tiempo_m2 = 0, tiempo_m3 = 0, tiempo_m4 = 0, tiempo_m5 = 0;
 
-    int b[100][15];
-
-    int *q[m];
-    for (i = 0; i < m; i++)
+    int op, num, i, j, k, n;
+    int b[M][N];
+    int *q[M];
+    int **r = q;
+    for (i = 0; i < M; i++)
     {
         q[i] = &b[i][0];
     }
 
-    do
+    llenarMatriz(r, M, N);
+
+    printf("Ingrese la cantidad de veces que desea iterar las busquedas: ");
+    scanf("%d", &n);
+
+    int num_busq[n];
+
+    for (i = 0; i < n; i++)
     {
-        system("CLS");
-        printf("   M  E   N   U \n");
-        printf("1.- METODO 1 \n");
-        printf("2.- METODO 2 \n");
-        printf("3.- METODO 3 \n");
-        printf("4.- METODO 4 \n");
-        printf("5.- METODO 5 \n");
-        printf("6.- LLENAR MATRIZ \n");
-        printf("0.- SALIR \n");
-        printf("\nESCOGE UNA OPCION: ");
-        scanf("%d", &op);
-        system("CLS");
+        num_busq[i] = rand() % 1000;
+    }
 
-        switch (op)
-        {
-        case 1:
-            num = solicitarNumero();
-            busquedaLineal_Metodo1(&b[0][0], m, n, num);
-            imprimirMatriz_Metodo1(&b[0][0], m, n);
-            break;
+    for (k = 0; k < n; k++)
+    {
+        num = num_busq[k];
 
-        case 2:
-            num = solicitarNumero();
-            busquedaLineal_Metodo2(&b[0][0], m, n, num);
-            imprimirMatriz_Metodo2(&b[0][0], m, n);
-            break;
+        printf("Iteracion %d\n", k + 1);
 
-        case 3:
-            num = solicitarNumero();
-            busquedaLineal_Metodo3(b, m, n, num);
-            imprimirMatriz_Metodo3(b, m, n);
-            break;
+        printf("Metodo 1\n");
+        start = clock();
+        imprimirMatriz_Metodo1(&b[0][0], M, N);
+        busquedaLineal_Metodo1(&b[0][0], M, N, num);
+        end = clock();
+        tiempo_m1 += (double)(end - start) / CLOCKS_PER_SEC;
 
-        case 4:
-            num = solicitarNumero();
-            busquedaLineal_Metodo4(q, m, n, num);
-            imprimirMatriz_Metodo4(q, m, n);
-            break;
+        printf("Metodo 2\n");
+        start = clock();
+        imprimirMatriz_Metodo2(&b[0][0], M, N);
+        busquedaLineal_Metodo2(&b[0][0], M, N, num);
+        end = clock();
+        tiempo_m2 += (double)(end - start) / CLOCKS_PER_SEC;
 
-        case 5:
-            num = solicitarNumero();
-            busquedaLineal_Metodo5(r, m, n, num);
-            imprimirMatriz_Metodo5(r, m, n);
-            break;
+        printf("Metodo 3\n");
+        start = clock();
+        imprimirMatriz_Metodo3(b, M, N);
+        busquedaLineal_Metodo3(b, M, N, num);
+        end = clock();
+        tiempo_m3 += (double)(end - start) / CLOCKS_PER_SEC;
 
-        case 6:
-            llenarMatriz(r, m, n);
-            printf("Matriz llenada");
-            break;
+        printf("Metodo 4\n");
+        start = clock();
+        imprimirMatriz_Metodo4(q, M, N);
+        busquedaLineal_Metodo4(q, M, N, num);
+        end = clock();
+        tiempo_m4 += (double)(end - start) / CLOCKS_PER_SEC;
 
-        case 0:
-            return 0;
-        }
+        printf("Metodo 5\n");
+        start = clock();
+        imprimirMatriz_Metodo5(r, M, N);
+        busquedaLineal_Metodo5(r, M, N, num);
+        end = clock();
+        tiempo_m5 += (double)(end - start) / CLOCKS_PER_SEC;
 
         printf("\n");
-        system("PAUSE");
-    } while (op != 0);
+    }
+
+    printf("Tiempo total Metodo 1: %f segundos\n", tiempo_m1);
+    printf("Tiempo total Metodo 2: %f segundos\n", tiempo_m2);
+    printf("Tiempo total Metodo 3: %f segundos\n", tiempo_m3);
+    printf("Tiempo total Metodo 4: %f segundos\n", tiempo_m4);
+    printf("Tiempo total Metodo 5: %f segundos\n", tiempo_m5);
+
+    return 0;
 }
 
 void llenarMatriz(int **q, int m, int n)
