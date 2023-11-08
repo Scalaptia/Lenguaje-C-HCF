@@ -1,0 +1,54 @@
+<mxfile host="app.diagrams.net" modified="2023-11-08T07:29:52.058Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="NUU12hf71X_53dxOxvts" version="22.0.8" type="device">
+  <diagram name="Página-1" id="wY6uZcT8hMfS2q6cgCWG">
+    <mxGraphModel dx="1195" dy="668" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="btgjlnelvWsudcuo9mZK-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="btgjlnelvWsudcuo9mZK-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="291" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-3" value="void argumentos(char *argv[])" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="195.5" y="80" width="192" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="btgjlnelvWsudcuo9mZK-7" target="btgjlnelvWsudcuo9mZK-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-7" value="&lt;div&gt;int num1 = atoi(argv[1]);&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;int num2 = atoi(argv[2]);&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="213.5" y="180" width="156" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-27" value="return 0" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="247.5" y="990" width="93" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-42" value="&quot;La suma de %d + %d = %d\n&quot;, num1, num2, num1 + num2" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="196.5" y="280" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="btgjlnelvWsudcuo9mZK-47">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="291" y="348" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-47" value="&quot;La resta de %d - %d = %d\n&quot;, num1, num2, num1 - num2" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="195.5" y="388" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="btgjlnelvWsudcuo9mZK-49">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="291" y="455" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-49" value="&quot;La multiplicacion de %d * %d = %d\n&quot;, num1, num2, num1 * num2" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="195.5" y="495" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="btgjlnelvWsudcuo9mZK-51">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="291" y="563" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="btgjlnelvWsudcuo9mZK-51" value="&quot;La division de %d / %d = %d\n&quot;, num1, num2, num1 / num2" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="195.5" y="603" width="190" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
