@@ -11,10 +11,10 @@ TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 YOUR_PHONE_NUMBER = os.getenv('YOUR_PHONE_NUMBER')
 
-LOW_STOCK_THRESHOLD_BLUE = 1
-LOW_STOCK_THRESHOLD_YELLOW = 1
+LOW_STOCK_THRESHOLD_BLUE = 2
+LOW_STOCK_THRESHOLD_YELLOW = 2
 
-TIME_BETWEEN_RUNS = 60 # Time in seconds
+TIME_BETWEEN_RUNS = 60
 
 client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
 
@@ -31,7 +31,6 @@ def get_limits(color):
 
     hue = hsvC[0][0][0]  # Get the hue value
 
-    # Handle red hue wrap-around
     if hue >= 165:  # Upper limit for divided red hue
         lowerLimit = np.array([hue - 10, 100, 100], dtype=np.uint8)
         upperLimit = np.array([180, 255, 255], dtype=np.uint8)
@@ -74,7 +73,7 @@ while True:
         bbox = cv2.boundingRect(contour)
         x, y, w, h = bbox
 
-        # Filter out slightly smaller contours
+        # Filtrar objetos pequeños
         if 25 < w < 500 and 25 < h < 500:
             frame = cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 5)  # Linea azul
             black_screen = cv2.rectangle(black_screen, (x, y), (x+w, y+h), (255, 0, 0), 5)  # Linea azul 
@@ -91,24 +90,26 @@ while True:
             bounding_box_count_yellow += 1
 
     # Contador de objetos
-    cv2.putText(black_screen, f"Objetos Azules: {bounding_box_count_blue}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    cv2.putText(black_screen, f"Objetos Morados: {bounding_box_count_blue}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     cv2.putText(black_screen, f"Objetos Amarillos: {bounding_box_count_yellow}", (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
+    # Enviar SMS si el stock es bajo
     if current_time - last_run_time >= TIME_BETWEEN_RUNS:
         last_run_time = current_time
 
         if bounding_box_count_blue < LOW_STOCK_THRESHOLD_BLUE:
-            message = "Low stock for blue objects!"
+            message = "Stock bajo para objetos azules!"
             send_sms(message)
 
         if bounding_box_count_yellow < LOW_STOCK_THRESHOLD_YELLOW:
-            message = "Low stock for yellow objects!"
+            message = "Stock bajo para objetos amarillos!"
             send_sms(message)
 
     cv2.imshow('video', frame)
     cv2.imshow('objetos', black_screen)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    k = cv2.waitKey(1)
+    if k == 27:
         break
 
 cap.release()
