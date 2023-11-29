@@ -1,9 +1,29 @@
 import cv2
 import numpy as np
 import time
+from twilio.rest import Client
+import os
+from dotenv import load_dotenv
 
-LOW_STOCK_THRESHOLD = 5
-TIME_BETWEEN_RUNS = 3 # Time in seconds
+load_dotenv()
+TWILIO_SID = os.getenv('TWILIO_SID')
+TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
+TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
+YOUR_PHONE_NUMBER = os.getenv('YOUR_PHONE_NUMBER')
+
+LOW_STOCK_THRESHOLD_BLUE = 1
+LOW_STOCK_THRESHOLD_YELLOW = 1
+
+TIME_BETWEEN_RUNS = 60 # Time in seconds
+
+client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
+
+def send_sms(message):
+    message = client.messages.create(
+        body=message,
+        from_=TWILIO_PHONE_NUMBER,
+        to=YOUR_PHONE_NUMBER
+    )
 
 def get_limits(color):
     c = np.uint8([[color]])  # BGR values
@@ -77,11 +97,13 @@ while True:
     if current_time - last_run_time >= TIME_BETWEEN_RUNS:
         last_run_time = current_time
 
-        if bounding_box_count_blue < LOW_STOCK_THRESHOLD:
-            print("Low stock for blue objects!")
+        if bounding_box_count_blue < LOW_STOCK_THRESHOLD_BLUE:
+            message = "Low stock for blue objects!"
+            send_sms(message)
 
-        if bounding_box_count_yellow < LOW_STOCK_THRESHOLD:
-            print("Low stock for yellow objects!")
+        if bounding_box_count_yellow < LOW_STOCK_THRESHOLD_YELLOW:
+            message = "Low stock for yellow objects!"
+            send_sms(message)
 
     cv2.imshow('video', frame)
     cv2.imshow('objetos', black_screen)
